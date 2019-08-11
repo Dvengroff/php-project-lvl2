@@ -1,0 +1,12 @@
+{
+    "name": "dvengroff/php-project-lvl2",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Dmitry Grebenschikov",
+            "email": "dvengroff@gmail.com"
+        }
+    ],
+    "description": "Generator of differences in config files. 2nd project of PHP-profession on Hexlet",
+    "require": {}
+}
