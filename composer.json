@@ -14,7 +14,8 @@
     ],
     "autoload": {
         "files": [
-            "src/GenDiff.php"
+            "src/Runner.php",
+            "src/Differ.php"
         ]
     },
     "scripts": {

@@ -2,7 +2,7 @@
 
 <?php
 
-use function GenDiff\GenDiff\run;
+use function GenDiff\Runner\run;
 
 $autoloadPath1 = __DIR__ . '/../../../autoload.php';
 $autoloadPath2 = __DIR__ . '/../vendor/autoload.php';
@@ -12,4 +12,18 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-run();
+const DOC = <<<DOC
+Generate diff
+
+Usage:
+  gendiff (-h|--help)
+  gendiff (-v|--version)
+  gendiff [--format <fmt>] <firstFile> <secondFile>
+
+Options:
+  -h --help                     Show this screen
+  -v --version                  Show version
+  --format <fmt>                Report format [default: pretty]
+DOC;
+
+run(DOC);
