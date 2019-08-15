@@ -1,6 +1,8 @@
 # php-project-lvl2 (Вычислитель отличий)
 
 [![Build Status](https://travis-ci.org/Dvengroff/php-project-lvl2.svg?branch=master)](https://travis-ci.org/Dvengroff/php-project-lvl2)
+[![Maintainability](https://api.codeclimate.com/v1/badges/4782576c0c7c11fbe71b/maintainability)](https://codeclimate.com/github/Dvengroff/php-project-lvl2/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/4782576c0c7c11fbe71b/test_coverage)](https://codeclimate.com/github/Dvengroff/php-project-lvl2/test_coverage)
 
 Утилита для поиска отличий в конфигурационных файлах.
 
