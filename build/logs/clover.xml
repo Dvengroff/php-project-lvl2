@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1565955572">
+  <project timestamp="1565955572">
+    <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Differ.php">
+      <line num="9" type="stmt" count="2"/>
+      <line num="10" type="stmt" count="0"/>
+      <line num="12" type="stmt" count="2"/>
+      <line num="13" type="stmt" count="0"/>
+      <line num="16" type="stmt" count="2"/>
+      <line num="17" type="stmt" count="2"/>
+      <line num="19" type="stmt" count="2"/>
+      <line num="20" type="stmt" count="2"/>
+      <line num="22" type="stmt" count="2"/>
+      <line num="23" type="stmt" count="2"/>
+      <line num="25" type="stmt" count="2"/>
+      <line num="26" type="stmt" count="2"/>
+      <line num="27" type="stmt" count="2"/>
+      <line num="28" type="stmt" count="2"/>
+      <line num="30" type="stmt" count="2"/>
+      <line num="32" type="stmt" count="2"/>
+      <line num="33" type="stmt" count="2"/>
+      <line num="34" type="stmt" count="2"/>
+      <line num="37" type="stmt" count="2"/>
+      <line num="38" type="stmt" count="2"/>
+      <line num="40" type="stmt" count="2"/>
+      <line num="41" type="stmt" count="2"/>
+      <line num="42" type="stmt" count="2"/>
+      <line num="43" type="stmt" count="2"/>
+      <line num="44" type="stmt" count="2"/>
+      <line num="45" type="stmt" count="2"/>
+      <line num="46" type="stmt" count="2"/>
+      <line num="47" type="stmt" count="2"/>
+      <line num="48" type="stmt" count="2"/>
+      <line num="49" type="stmt" count="2"/>
+      <line num="50" type="stmt" count="2"/>
+      <line num="51" type="stmt" count="2"/>
+      <line num="52" type="stmt" count="2"/>
+      <line num="53" type="stmt" count="2"/>
+      <line num="55" type="stmt" count="2"/>
+      <line num="56" type="stmt" count="2"/>
+      <line num="57" type="stmt" count="2"/>
+      <line num="60" type="stmt" count="2"/>
+      <line num="61" type="stmt" count="2"/>
+      <metrics loc="62" ncloc="62" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="39" coveredstatements="37" elements="39" coveredelements="37"/>
+    </file>
+    <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Parsers.php">
+      <line num="9" type="stmt" count="2"/>
+      <line num="10" type="stmt" count="2"/>
+      <line num="11" type="stmt" count="2"/>
+      <line num="12" type="stmt" count="1"/>
+      <line num="14" type="stmt" count="1"/>
+      <line num="15" type="stmt" count="1"/>
+      <line num="16" type="stmt" count="1"/>
+      <line num="18" type="stmt" count="1"/>
+      <line num="19" type="stmt" count="1"/>
+      <line num="21" type="stmt" count="1"/>
+      <line num="22" type="stmt" count="1"/>
+      <line num="23" type="stmt" count="1"/>
+      <line num="26" type="stmt" count="0"/>
+      <metrics loc="26" ncloc="26" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="13" coveredstatements="12" elements="13" coveredelements="12"/>
+    </file>
+    <metrics files="2" loc="88" ncloc="88" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="52" coveredstatements="49" elements="52" coveredelements="49"/>
+  </project>
+</coverage>

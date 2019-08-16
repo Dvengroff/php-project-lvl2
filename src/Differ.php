@@ -2,6 +2,8 @@
 
 namespace GenDiff\Differ;
 
+use function GenDiff\Parsers\parse;
+
 function genDiff($pathToFile1, $pathToFile2)
 {
     if (!file_exists($pathToFile1)) {
@@ -11,20 +13,8 @@ function genDiff($pathToFile1, $pathToFile2)
         throw new \Exception("Файл {$pathToFile2} не найден!");
     }
 
-    $rawData1 = file_get_contents($pathToFile1);
-    $config1 = array_map(
-        function ($value) {
-            return (is_bool($value)) ? var_export($value, true) : $value;
-        },
-        json_decode($rawData1, true)
-    );
-    $rawData2 = file_get_contents($pathToFile2);
-    $config2 = array_map(
-        function ($value) {
-            return (is_bool($value)) ? var_export($value, true) : $value;
-        },
-        json_decode($rawData2, true)
-    );
+    $config1 = parse($pathToFile1);
+    $config2 = parse($pathToFile2);
     
     $allKeys = array_merge(array_keys($config1), array_keys($config2));
     $allUniqueKeys = array_unique($allKeys);

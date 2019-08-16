@@ -1,11 +1,11 @@
 <phpunit>
     <filter>
-    <whitelist>
-        <directory suffix=".php">src</directory>
-        <exclude>
-            <file>src/Runner.php</file>
-        </exclude>
-    </whitelist>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+            <exclude>
+                <file>src/Runner.php</file>
+            </exclude>
+        </whitelist>
     </filter>
     <logging>
         <log type="coverage-clover" target="build/logs/clover.xml"/>
