@@ -10,6 +10,10 @@
 
 [![asciicast](https://asciinema.org/a/49cd5FePFu5Cmm3xYr1p89TFu.svg)](https://asciinema.org/a/49cd5FePFu5Cmm3xYr1p89TFu)
 
-### Usage (compare two flat JSON files)
+### Usage: compare two flat JSON files (сравнение плоских JSON-файлов)
 
 [![asciicast](https://asciinema.org/a/E9k2vzdT1CE3v5ZbeH1264htW.svg)](https://asciinema.org/a/E9k2vzdT1CE3v5ZbeH1264htW)
+
+### Usage: compare two flat YAML files (сравнение плоских YAML-файлов)
+
+[![asciicast](https://asciinema.org/a/Bom5THT4H4q0hJjUDLiVAtPDj.svg)](https://asciinema.org/a/Bom5THT4H4q0hJjUDLiVAtPDj)
