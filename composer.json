@@ -16,7 +16,8 @@
         "files": [
             "src/Runner.php",
             "src/Differ.php",
-            "src/Parsers.php"
+            "src/Parsers.php",
+            "src/Renderers.php"
         ]
     },
     "scripts": {

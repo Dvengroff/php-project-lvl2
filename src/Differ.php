@@ -3,6 +3,7 @@
 namespace GenDiff\Differ;
 
 use function GenDiff\Parsers\parse;
+use function GenDiff\Renderers\render;
 
 function genDiff($pathToFile1, $pathToFile2)
 {
@@ -34,29 +35,5 @@ function genDiff($pathToFile1, $pathToFile2)
         []
     );
 
-    $differArr = array_reduce(
-        $allUniqueKeys,
-        function ($acc, $key) use ($keyStateArr, $config1, $config2) {
-            switch ($keyStateArr[$key]) {
-                case 'unchanged':
-                    $acc[] = "  {$key}: {$config1[$key]}";
-                    break;
-                case 'changed':
-                    $acc[] = "- {$key}: {$config1[$key]}";
-                    $acc[] = "+ {$key}: {$config2[$key]}";
-                    break;
-                case 'deleted':
-                    $acc[] = "- {$key}: {$config1[$key]}";
-                    break;
-                case 'added':
-                    $acc[] = "+ {$key}: {$config2[$key]}";
-                    break;
-            }
-            return $acc;
-        },
-        []
-    );
-
-    $differString = implode("\n  ", $differArr);
-    return "{\n  " . $differString . "\n}" . PHP_EOL;
+    return render($keyStateArr, $config1, $config2);
 }
