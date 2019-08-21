@@ -2,31 +2,63 @@
 
 namespace GenDiff\Renderers;
 
-function render($differAst, $config1, $config2)
+use Funct\Collection;
+use Funct\Strings;
+
+function getDataMap($value)
 {
-    $differArr = array_reduce(
-        array_keys($differAst),
-        function ($acc, $key) use ($differAst, $config1, $config2) {
-            switch ($differAst[$key]) {
+    $dataString = json_encode($value, JSON_PRETTY_PRINT);
+    return Strings\strip($dataString, '"');
+}
+
+function getRawData($ast)
+{
+    return array_reduce(
+        array_keys($ast),
+        function ($data, $attr) use ($ast) {
+            switch ($ast[$attr]->type) {
                 case 'unchanged':
-                    $acc[] = "  {$key}: {$config1[$key]}";
+                    $key = "{$attr}";
+                    $data[$key] = $ast[$attr]->newValue;
                     break;
                 case 'changed':
-                    $acc[] = "- {$key}: {$config1[$key]}";
-                    $acc[] = "+ {$key}: {$config2[$key]}";
+                    $oldKey = "- {$attr}";
+                    $data[$oldKey] = $ast[$attr]->oldValue;
+                    $newKey = "+ {$attr}";
+                    $data[$newKey] = $ast[$attr]->newValue;
                     break;
                 case 'deleted':
-                    $acc[] = "- {$key}: {$config1[$key]}";
+                    $key = "- {$attr}";
+                    $data[$key] = $ast[$attr]->oldValue;
                     break;
                 case 'added':
-                    $acc[] = "+ {$key}: {$config2[$key]}";
+                    $key = "+ {$attr}";
+                    $data[$key] = $ast[$attr]->newValue;
+                    break;
+                case 'nested':
+                    $key = "{$attr}";
+                    $data[$key] = getRawData($ast[$attr]->children);
                     break;
             }
-            return $acc;
+            return $data;
         },
         []
     );
+}
 
-    $differString = implode("\n  ", $differArr);
-    return "{\n  " . $differString . "\n}" . PHP_EOL;
+function render($diffAst)
+{
+    $rawData = getRawData($diffAst);
+    $rawDataString = json_encode($rawData, JSON_PRETTY_PRINT);
+    $rawDataArr = explode("\n", $rawDataString);
+    $formattedDataArr = array_map(
+        function ($rawString) {
+            $formattedString = Strings\strip($rawString, '"', ",");
+            return ((trim($formattedString)[0] === "+") || (trim($formattedString)[0] === "-"))
+                    ? Strings\chompLeft($formattedString, "  ") : $formattedString;
+        },
+        $rawDataArr
+    );
+
+    return implode("\n", $formattedDataArr) . PHP_EOL;
 }

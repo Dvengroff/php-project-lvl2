@@ -1,0 +1,6 @@
+files:
+    - src/Countable.php
+    - src/Moment.php
+require:
+    phpunit: '*'
+    http-client: '*'

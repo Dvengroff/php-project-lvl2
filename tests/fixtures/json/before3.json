@@ -1,0 +1,7 @@
+{
+  "files": ["src/Moment.php", "src/Countable.php"],
+  "require": {
+    "phpunit": "phpunit",
+    "http-client": "*"
+  }
+}

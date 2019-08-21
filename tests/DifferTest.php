@@ -20,15 +20,35 @@ class DifferTest extends TestCase
     public function additionProvider()
     {
         return [
-            "json" => [
-                __DIR__ . "/fixtures/json/before.json",
-                __DIR__ . "/fixtures/json/after.json",
-                __DIR__ . "/fixtures/difference"
+            "flat_json" => [
+                __DIR__ . "/fixtures/json/before1.json",
+                __DIR__ . "/fixtures/json/after1.json",
+                __DIR__ . "/fixtures/difference1"
             ],
-            "yaml" => [
-                __DIR__ . "/fixtures/yaml/before.yml",
-                __DIR__ . "/fixtures/yaml/after.yml",
-                __DIR__ . "/fixtures/difference"
+            "flat_yaml" => [
+                __DIR__ . "/fixtures/yaml/before1.yml",
+                __DIR__ . "/fixtures/yaml/after1.yml",
+                __DIR__ . "/fixtures/difference1"
+            ],
+            "nested_json" => [
+                __DIR__ . "/fixtures/json/before2.json",
+                __DIR__ . "/fixtures/json/after2.json",
+                __DIR__ . "/fixtures/difference2"
+            ],
+            "nested_yaml" => [
+                __DIR__ . "/fixtures/yaml/before2.yml",
+                __DIR__ . "/fixtures/yaml/after2.yml",
+                __DIR__ . "/fixtures/difference2"
+            ],
+            "json_with_array" => [
+                __DIR__ . "/fixtures/json/before3.json",
+                __DIR__ . "/fixtures/json/after3.json",
+                __DIR__ . "/fixtures/difference3"
+            ],
+            "yaml_with_array" => [
+                __DIR__ . "/fixtures/yaml/before3.yml",
+                __DIR__ . "/fixtures/yaml/after3.yml",
+                __DIR__ . "/fixtures/difference3"
             ]
         ];
     }

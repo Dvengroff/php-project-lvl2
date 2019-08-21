@@ -14,5 +14,5 @@ function run($doc)
         exit($e->getMessage());
     }
     
-    echo $diff;
+    print_r($diff);
 }
