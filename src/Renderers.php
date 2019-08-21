@@ -2,63 +2,14 @@
 
 namespace GenDiff\Renderers;
 
-use Funct\Collection;
-use Funct\Strings;
+use GenDiff\Formatters;
 
-function getDataMap($value)
+function render($diffAst, $format)
 {
-    $dataString = json_encode($value, JSON_PRETTY_PRINT);
-    return Strings\strip($dataString, '"');
-}
+    $mapping = [
+        'pretty' => Formatters\Pretty\render($diffAst),
+        'plain' => Formatters\Plain\render($diffAst)
+    ];
 
-function getRawData($ast)
-{
-    return array_reduce(
-        array_keys($ast),
-        function ($data, $attr) use ($ast) {
-            switch ($ast[$attr]->type) {
-                case 'unchanged':
-                    $key = "{$attr}";
-                    $data[$key] = $ast[$attr]->newValue;
-                    break;
-                case 'changed':
-                    $oldKey = "- {$attr}";
-                    $data[$oldKey] = $ast[$attr]->oldValue;
-                    $newKey = "+ {$attr}";
-                    $data[$newKey] = $ast[$attr]->newValue;
-                    break;
-                case 'deleted':
-                    $key = "- {$attr}";
-                    $data[$key] = $ast[$attr]->oldValue;
-                    break;
-                case 'added':
-                    $key = "+ {$attr}";
-                    $data[$key] = $ast[$attr]->newValue;
-                    break;
-                case 'nested':
-                    $key = "{$attr}";
-                    $data[$key] = getRawData($ast[$attr]->children);
-                    break;
-            }
-            return $data;
-        },
-        []
-    );
-}
-
-function render($diffAst)
-{
-    $rawData = getRawData($diffAst);
-    $rawDataString = json_encode($rawData, JSON_PRETTY_PRINT);
-    $rawDataArr = explode("\n", $rawDataString);
-    $formattedDataArr = array_map(
-        function ($rawString) {
-            $formattedString = Strings\strip($rawString, '"', ",");
-            return ((trim($formattedString)[0] === "+") || (trim($formattedString)[0] === "-"))
-                    ? Strings\chompLeft($formattedString, "  ") : $formattedString;
-        },
-        $rawDataArr
-    );
-
-    return implode("\n", $formattedDataArr) . PHP_EOL;
+    return $mapping[$format];
 }

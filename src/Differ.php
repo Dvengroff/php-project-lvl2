@@ -66,5 +66,5 @@ function genDiff($pathToFile1, $pathToFile2, $format = "pretty")
     
     $diffAst = buildDiffAst($config1, $config2);
  
-    return render($diffAst);
+    return render($diffAst, $format);
 }
