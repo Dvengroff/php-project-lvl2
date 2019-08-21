@@ -5,60 +5,45 @@ namespace GenDiff\Formatters\Plain;
 use Funct\Collection;
 use Funct\Strings;
 
-function getDataMap($value)
+function getValueMap($value)
 {
-    $dataString = json_encode($value, JSON_PRETTY_PRINT);
-    return Strings\strip($dataString, '"');
+    return (is_object($value) || is_array($value))
+            ? 'complex value' : Strings\strip(json_encode($value), '"');
 }
 
-function getRawData($ast)
+function getRawData($ast, $property = "")
 {
-    return array_reduce(
-        array_keys($ast),
-        function ($data, $attr) use ($ast) {
-            switch ($ast[$attr]->type) {
-                case 'unchanged':
-                    $key = "{$attr}";
-                    $data[$key] = $ast[$attr]->newValue;
-                    break;
+    $data = array_map(
+        function ($attr, $node) use ($property) {
+            switch ($node->type) {
                 case 'changed':
-                    $oldKey = "- {$attr}";
-                    $data[$oldKey] = $ast[$attr]->oldValue;
-                    $newKey = "+ {$attr}";
-                    $data[$newKey] = $ast[$attr]->newValue;
-                    break;
+                    $property .= $attr;
+                    $oldValue = getValueMap($node->oldValue);
+                    $newValue = getValueMap($node->newValue);
+                    $raw = "Property '{$property}' was changed. From '{$oldValue}' to '{$newValue}'";
+                    return $raw;
                 case 'deleted':
-                    $key = "- {$attr}";
-                    $data[$key] = $ast[$attr]->oldValue;
-                    break;
+                    $property .= $attr;
+                    $raw = "Property '{$property}' was removed";
+                    return $raw;
                 case 'added':
-                    $key = "+ {$attr}";
-                    $data[$key] = $ast[$attr]->newValue;
-                    break;
+                    $property .= $attr;
+                    $value = getValueMap($node->newValue);
+                    $raw = "Property '{$property}' was added with value: '$value'";
+                    return $raw;
                 case 'nested':
-                    $key = "{$attr}";
-                    $data[$key] = getRawData($ast[$attr]->children);
-                    break;
+                    $property .= "{$attr}.";
+                    return getRawData($node->children, $property);
             }
-            return $data;
         },
-        []
+        array_keys($ast),
+        $ast
     );
+    return Collection\compact($data);
 }
 
 function render($diffAst)
 {
     $rawData = getRawData($diffAst);
-    $rawDataString = json_encode($rawData, JSON_PRETTY_PRINT);
-    $rawDataArr = explode("\n", $rawDataString);
-    $formattedDataArr = array_map(
-        function ($rawString) {
-            $formattedString = Strings\strip($rawString, '"', ",");
-            return ((trim($formattedString)[0] === "+") || (trim($formattedString)[0] === "-"))
-                    ? Strings\chompLeft($formattedString, "  ") : $formattedString;
-        },
-        $rawDataArr
-    );
-
-    return implode("\n", $formattedDataArr) . PHP_EOL;
+    return implode("\n", Collection\flattenAll($rawData)) . PHP_EOL;
 }

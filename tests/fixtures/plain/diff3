@@ -1,1 +1,3 @@
+Property 'files' was changed. From 'complex value' to 'complex value'
 Property 'require.phpunit' was changed. From 'phpunit' to '*'
+Property 'require.http-client.foo' was changed. From 'foo' to 'bar'

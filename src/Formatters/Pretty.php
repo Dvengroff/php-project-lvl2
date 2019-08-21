@@ -5,12 +5,6 @@ namespace GenDiff\Formatters\Pretty;
 use Funct\Collection;
 use Funct\Strings;
 
-function getDataMap($value)
-{
-    $dataString = json_encode($value, JSON_PRETTY_PRINT);
-    return Strings\strip($dataString, '"');
-}
-
 function getRawData($ast)
 {
     return array_reduce(

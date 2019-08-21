@@ -3,4 +3,5 @@ files:
     - src/Moment.php
 require:
     phpunit: '*'
-    http-client: '*'
+    http-client:
+        foo: bar

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566386956">
-  <project timestamp="1566386956">
+<coverage generated="1566398158">
+  <project timestamp="1566398158">
     <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Differ.php">
       <line num="11" type="stmt" count="6"/>
       <line num="12" type="stmt" count="2"/>
@@ -43,10 +43,10 @@
       <metrics loc="70" ncloc="70" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="35" elements="38" coveredelements="35"/>
     </file>
     <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Formatters/Plain.php">
-      <line num="10" type="stmt" count="0"/>
-      <line num="11" type="stmt" count="0"/>
+      <line num="10" type="stmt" count="6"/>
+      <line num="11" type="stmt" count="6"/>
       <line num="16" type="stmt" count="6"/>
-      <line num="17" type="stmt" count="6"/>
+      <line num="18" type="stmt" count="6"/>
       <line num="19" type="stmt" count="6"/>
       <line num="20" type="stmt" count="6"/>
       <line num="21" type="stmt" count="6"/>
@@ -54,79 +54,65 @@
       <line num="23" type="stmt" count="6"/>
       <line num="24" type="stmt" count="6"/>
       <line num="25" type="stmt" count="6"/>
-      <line num="26" type="stmt" count="6"/>
-      <line num="27" type="stmt" count="6"/>
-      <line num="28" type="stmt" count="6"/>
+      <line num="26" type="stmt" count="4"/>
+      <line num="27" type="stmt" count="4"/>
+      <line num="28" type="stmt" count="4"/>
       <line num="29" type="stmt" count="6"/>
-      <line num="30" type="stmt" count="6"/>
+      <line num="30" type="stmt" count="4"/>
       <line num="31" type="stmt" count="4"/>
       <line num="32" type="stmt" count="4"/>
       <line num="33" type="stmt" count="4"/>
       <line num="34" type="stmt" count="6"/>
       <line num="35" type="stmt" count="4"/>
       <line num="36" type="stmt" count="4"/>
-      <line num="37" type="stmt" count="4"/>
-      <line num="38" type="stmt" count="4"/>
-      <line num="39" type="stmt" count="4"/>
-      <line num="40" type="stmt" count="4"/>
-      <line num="41" type="stmt" count="4"/>
-      <line num="43" type="stmt" count="6"/>
-      <line num="44" type="stmt" count="6"/>
-      <line num="45" type="stmt" count="6"/>
-      <line num="51" type="stmt" count="6"/>
-      <line num="52" type="stmt" count="6"/>
-      <line num="53" type="stmt" count="6"/>
-      <line num="54" type="stmt" count="6"/>
-      <line num="56" type="stmt" count="6"/>
-      <line num="57" type="stmt" count="6"/>
-      <line num="58" type="stmt" count="6"/>
-      <line num="59" type="stmt" count="6"/>
-      <line num="60" type="stmt" count="6"/>
-      <line num="63" type="stmt" count="6"/>
-      <metrics loc="64" ncloc="64" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="38" elements="40" coveredelements="38"/>
+      <line num="38" type="stmt" count="6"/>
+      <line num="39" type="stmt" count="6"/>
+      <line num="40" type="stmt" count="6"/>
+      <line num="42" type="stmt" count="6"/>
+      <line num="47" type="stmt" count="6"/>
+      <line num="48" type="stmt" count="6"/>
+      <metrics loc="49" ncloc="49" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="28" coveredstatements="28" elements="28" coveredelements="28"/>
     </file>
     <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Formatters/Pretty.php">
-      <line num="10" type="stmt" count="0"/>
-      <line num="11" type="stmt" count="0"/>
-      <line num="16" type="stmt" count="6"/>
-      <line num="17" type="stmt" count="6"/>
+      <line num="10" type="stmt" count="6"/>
+      <line num="11" type="stmt" count="6"/>
+      <line num="13" type="stmt" count="6"/>
+      <line num="14" type="stmt" count="6"/>
+      <line num="15" type="stmt" count="4"/>
+      <line num="16" type="stmt" count="4"/>
+      <line num="17" type="stmt" count="4"/>
+      <line num="18" type="stmt" count="6"/>
       <line num="19" type="stmt" count="6"/>
       <line num="20" type="stmt" count="6"/>
       <line num="21" type="stmt" count="6"/>
       <line num="22" type="stmt" count="6"/>
       <line num="23" type="stmt" count="6"/>
       <line num="24" type="stmt" count="6"/>
-      <line num="25" type="stmt" count="6"/>
-      <line num="26" type="stmt" count="6"/>
-      <line num="27" type="stmt" count="6"/>
+      <line num="25" type="stmt" count="4"/>
+      <line num="26" type="stmt" count="4"/>
+      <line num="27" type="stmt" count="4"/>
       <line num="28" type="stmt" count="6"/>
-      <line num="29" type="stmt" count="6"/>
-      <line num="30" type="stmt" count="6"/>
+      <line num="29" type="stmt" count="4"/>
+      <line num="30" type="stmt" count="4"/>
       <line num="31" type="stmt" count="4"/>
       <line num="32" type="stmt" count="4"/>
       <line num="33" type="stmt" count="4"/>
-      <line num="34" type="stmt" count="6"/>
+      <line num="34" type="stmt" count="4"/>
       <line num="35" type="stmt" count="4"/>
-      <line num="36" type="stmt" count="4"/>
-      <line num="37" type="stmt" count="4"/>
-      <line num="38" type="stmt" count="4"/>
-      <line num="39" type="stmt" count="4"/>
-      <line num="40" type="stmt" count="4"/>
-      <line num="41" type="stmt" count="4"/>
-      <line num="43" type="stmt" count="6"/>
-      <line num="44" type="stmt" count="6"/>
+      <line num="37" type="stmt" count="6"/>
+      <line num="38" type="stmt" count="6"/>
+      <line num="39" type="stmt" count="6"/>
       <line num="45" type="stmt" count="6"/>
+      <line num="46" type="stmt" count="6"/>
+      <line num="47" type="stmt" count="6"/>
+      <line num="48" type="stmt" count="6"/>
+      <line num="50" type="stmt" count="6"/>
       <line num="51" type="stmt" count="6"/>
       <line num="52" type="stmt" count="6"/>
       <line num="53" type="stmt" count="6"/>
       <line num="54" type="stmt" count="6"/>
-      <line num="56" type="stmt" count="6"/>
       <line num="57" type="stmt" count="6"/>
-      <line num="58" type="stmt" count="6"/>
-      <line num="59" type="stmt" count="6"/>
-      <line num="60" type="stmt" count="6"/>
-      <line num="63" type="stmt" count="6"/>
-      <metrics loc="64" ncloc="64" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="40" coveredstatements="38" elements="40" coveredelements="38"/>
+      <metrics loc="58" ncloc="58" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="38" elements="38" coveredelements="38"/>
     </file>
     <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Parsers.php">
       <line num="9" type="stmt" count="6"/>
@@ -144,6 +130,6 @@
       <line num="14" type="stmt" count="6"/>
       <metrics loc="15" ncloc="15" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="3" coveredelements="3"/>
     </file>
-    <metrics files="5" loc="229" ncloc="229" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="128" coveredstatements="120" elements="128" coveredelements="120"/>
+    <metrics files="5" loc="208" ncloc="208" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="114" coveredstatements="110" elements="114" coveredelements="110"/>
   </project>
 </coverage>

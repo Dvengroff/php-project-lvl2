@@ -1,6 +1,8 @@
 files:
     - src/Moment.php
     - src/Countable.php
+    - src/Factorial.php
 require:
     phpunit: phpunit
-    http-client: '*'
+    http-client:
+        foo: foo
