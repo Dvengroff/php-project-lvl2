@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1566398158">
-  <project timestamp="1566398158">
+<coverage generated="1566414893">
+  <project timestamp="1566414893">
     <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Differ.php">
       <line num="11" type="stmt" count="6"/>
       <line num="12" type="stmt" count="2"/>
@@ -41,6 +41,29 @@
       <line num="67" type="stmt" count="6"/>
       <line num="69" type="stmt" count="6"/>
       <metrics loc="70" ncloc="70" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="38" coveredstatements="35" elements="38" coveredelements="35"/>
+    </file>
+    <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Formatters/Json.php">
+      <line num="10" type="stmt" count="6"/>
+      <line num="11" type="stmt" count="6"/>
+      <line num="13" type="stmt" count="6"/>
+      <line num="14" type="stmt" count="6"/>
+      <line num="15" type="stmt" count="6"/>
+      <line num="16" type="stmt" count="6"/>
+      <line num="17" type="stmt" count="6"/>
+      <line num="18" type="stmt" count="4"/>
+      <line num="19" type="stmt" count="4"/>
+      <line num="20" type="stmt" count="6"/>
+      <line num="21" type="stmt" count="4"/>
+      <line num="22" type="stmt" count="4"/>
+      <line num="23" type="stmt" count="6"/>
+      <line num="24" type="stmt" count="4"/>
+      <line num="25" type="stmt" count="4"/>
+      <line num="27" type="stmt" count="6"/>
+      <line num="28" type="stmt" count="6"/>
+      <line num="29" type="stmt" count="6"/>
+      <line num="35" type="stmt" count="6"/>
+      <line num="36" type="stmt" count="6"/>
+      <metrics loc="37" ncloc="37" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="20" elements="20" coveredelements="20"/>
     </file>
     <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Formatters/Plain.php">
       <line num="10" type="stmt" count="6"/>
@@ -127,9 +150,10 @@
     <file name="/home/dvengroff/Work/hexlet-projects/php-project-lvl2/src/Renderers.php">
       <line num="10" type="stmt" count="6"/>
       <line num="11" type="stmt" count="6"/>
-      <line num="14" type="stmt" count="6"/>
-      <metrics loc="15" ncloc="15" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="3" coveredstatements="3" elements="3" coveredelements="3"/>
+      <line num="12" type="stmt" count="6"/>
+      <line num="15" type="stmt" count="6"/>
+      <metrics loc="16" ncloc="16" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="4" coveredelements="4"/>
     </file>
-    <metrics files="5" loc="208" ncloc="208" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="114" coveredstatements="110" elements="114" coveredelements="110"/>
+    <metrics files="6" loc="246" ncloc="246" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="135" coveredstatements="131" elements="135" coveredelements="131"/>
   </project>
 </coverage>

@@ -1,0 +1,43 @@
+{
+    "common": {
+        "setting2": {
+            "oldValue": "200",
+            "type": "deleted"
+        },
+        "setting6": {
+            "oldValue": {
+                "key": "value"
+            },
+            "type": "deleted"
+        },
+        "setting4": {
+            "newValue": "blah blah",
+            "type": "added"
+        },
+        "setting5": {
+            "newValue": {
+                "key5": "value5"
+            },
+            "type": "added"
+        }
+    },
+    "group1": {
+        "baz": {
+            "oldValue": "bas",
+            "newValue": "bars",
+            "type": "changed"
+        }
+    },
+    "group2": {
+        "oldValue": {
+            "abc": "12345"
+        },
+        "type": "deleted"
+    },
+    "group3": {
+        "newValue": {
+            "fee": "100500"
+        },
+        "type": "added"
+    }
+}

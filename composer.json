@@ -19,7 +19,8 @@
             "src/Parsers.php",
             "src/Renderers.php",
             "src/Formatters/Pretty.php",
-            "src/Formatters/Plain.php"
+            "src/Formatters/Plain.php",
+            "src/Formatters/Json.php"
         ]
     },
     "scripts": {

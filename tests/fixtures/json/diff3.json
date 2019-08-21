@@ -1,0 +1,28 @@
+{
+    "files": {
+        "oldValue": [
+            "src\/Moment.php",
+            "src\/Countable.php",
+            "src\/Factorial.php"
+        ],
+        "newValue": [
+            "src\/Countable.php",
+            "src\/Moment.php"
+        ],
+        "type": "changed"
+    },
+    "require": {
+        "phpunit": {
+            "oldValue": "phpunit",
+            "newValue": "*",
+            "type": "changed"
+        },
+        "http-client": {
+            "foo": {
+                "oldValue": "foo",
+                "newValue": "bar",
+                "type": "changed"
+            }
+        }
+    }
+}
