@@ -49,13 +49,16 @@ function buildDiffAst($data1, $data2)
     );
 }
 
-function genDiff($pathToFile1, $pathToFile2)
+function genDiff($pathToFile1, $pathToFile2, $format = "pretty")
 {
     if (!file_exists($pathToFile1)) {
         throw new \Exception("Файл {$pathToFile1} не найден!");
     }
     if (!file_exists($pathToFile2)) {
         throw new \Exception("Файл {$pathToFile2} не найден!");
+    }
+    if (!in_array($format, ["pretty", "plain", "json"])) {
+        throw new \Exception("Задан неизвестный формат отображения: '{$format}'!");
     }
 
     $config1 = parse($pathToFile1);
