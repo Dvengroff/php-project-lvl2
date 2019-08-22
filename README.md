@@ -6,14 +6,20 @@
 
 Утилита для поиска отличий в конфигурационных файлах.
 
-### Global install (установка глобально)
+### Global install (глобальная установка)
 
-[![asciicast](https://asciinema.org/a/49cd5FePFu5Cmm3xYr1p89TFu.svg)](https://asciinema.org/a/49cd5FePFu5Cmm3xYr1p89TFu)
+Установка пакета с помощью Composer:
 
-### Usage: compare two flat JSON files (сравнение плоских JSON-файлов)
+[![asciicast](https://asciinema.org/a/UeCNLNcxKD3DprgpGrRh8aoTc.svg)](https://asciinema.org/a/UeCNLNcxKD3DprgpGrRh8aoTc)
 
-[![asciicast](https://asciinema.org/a/E9k2vzdT1CE3v5ZbeH1264htW.svg)](https://asciinema.org/a/E9k2vzdT1CE3v5ZbeH1264htW)
+### Usage (использование пакета)
 
-### Usage: compare two flat YAML files (сравнение плоских YAML-файлов)
+Утилита позволяет сравнивать конфигурационные файлы форматов **json** и **yaml**. 
 
-[![asciicast](https://asciinema.org/a/Bom5THT4H4q0hJjUDLiVAtPDj.svg)](https://asciinema.org/a/Bom5THT4H4q0hJjUDLiVAtPDj)
+По умолчанию результат сравнения выводится в виде *pretty*:
+
+[![asciicast](https://asciinema.org/a/Jk95tfuibiLAD2gXl94xBgLTf.svg)](https://asciinema.org/a/Jk95tfuibiLAD2gXl94xBgLTf)
+
+Вывод результата в виде *plain text* и *json*:
+
+[![asciicast](https://asciinema.org/a/JKjOVAq9kIGWj2Y25Epona2Im.svg)](https://asciinema.org/a/JKjOVAq9kIGWj2Y25Epona2Im)
