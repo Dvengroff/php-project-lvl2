@@ -60,12 +60,12 @@ function genDiff($pathToFile1, $pathToFile2, $format = "pretty")
 
     $data1 = file_get_contents($pathToFile1);
     $fileExtension1 = pathinfo($pathToFile1, PATHINFO_EXTENSION);
-    $parsedData1 = parse($data1, $fileExtension1);
+    $config1 = parse($data1, $fileExtension1);
 
     $data2 = file_get_contents($pathToFile2);
     $fileExtension2 = pathinfo($pathToFile2, PATHINFO_EXTENSION);
-    $parsedData2 = parse($data2, $fileExtension2);
+    $config2 = parse($data2, $fileExtension2);
     
-    $diffAst = buildDiffAst($parsedData1, $parsedData2);
+    $diffAst = buildDiffAst($config1, $config2);
     return render($diffAst, $format);
 }

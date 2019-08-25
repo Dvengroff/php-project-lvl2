@@ -1,5 +1,6 @@
 {
     "files": {
+        "type": "changed",
         "oldValue": [
             "src\/Moment.php",
             "src\/Countable.php",
@@ -8,20 +9,19 @@
         "newValue": [
             "src\/Countable.php",
             "src\/Moment.php"
-        ],
-        "type": "changed"
+        ]
     },
     "require": {
         "phpunit": {
+            "type": "changed",
             "oldValue": "phpunit",
-            "newValue": "*",
-            "type": "changed"
+            "newValue": "*"
         },
         "http-client": {
             "foo": {
+                "type": "changed",
                 "oldValue": "foo",
-                "newValue": "bar",
-                "type": "changed"
+                "newValue": "bar"
             }
         }
     }

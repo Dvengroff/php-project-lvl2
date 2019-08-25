@@ -1,15 +1,15 @@
 {
     "timeout": {
+        "type": "changed",
         "oldValue": 50,
-        "newValue": 20,
-        "type": "changed"
+        "newValue": 20
     },
     "proxy": {
-        "oldValue": "123.234.53.22",
-        "type": "deleted"
+        "type": "deleted",
+        "oldValue": "123.234.53.22"
     },
     "verbose": {
-        "newValue": true,
-        "type": "added"
+        "type": "added",
+        "newValue": true
     }
 }

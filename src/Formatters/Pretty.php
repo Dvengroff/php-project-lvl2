@@ -48,7 +48,8 @@ function render($diffAst)
     $formattedDataArr = array_map(
         function ($rawString) {
             $formattedString = Strings\strip($rawString, '"', ",");
-            return ((trim($formattedString)[0] === "+") || (trim($formattedString)[0] === "-"))
+            $firstChar = trim($formattedString)[0];
+            return (($firstChar === "+") || ($firstChar === "-"))
                     ? Strings\chompLeft($formattedString, "  ") : $formattedString;
         },
         $rawDataArr

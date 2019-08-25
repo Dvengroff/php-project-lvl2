@@ -1,43 +1,43 @@
 {
     "common": {
         "setting2": {
-            "oldValue": "200",
-            "type": "deleted"
+            "type": "deleted",
+            "oldValue": "200"
         },
         "setting6": {
+            "type": "deleted",
             "oldValue": {
                 "key": "value"
-            },
-            "type": "deleted"
+            }
         },
         "setting4": {
-            "newValue": "blah blah",
-            "type": "added"
+            "type": "added",
+            "newValue": "blah blah"
         },
         "setting5": {
+            "type": "added",
             "newValue": {
                 "key5": "value5"
-            },
-            "type": "added"
+            }
         }
     },
     "group1": {
         "baz": {
+            "type": "changed",
             "oldValue": "bas",
-            "newValue": "bars",
-            "type": "changed"
+            "newValue": "bars"
         }
     },
     "group2": {
+        "type": "deleted",
         "oldValue": {
             "abc": "12345"
-        },
-        "type": "deleted"
+        }
     },
     "group3": {
+        "type": "added",
         "newValue": {
             "fee": "100500"
-        },
-        "type": "added"
+        }
     }
 }
