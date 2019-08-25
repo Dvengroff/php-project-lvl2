@@ -25,9 +25,6 @@ function buildDiffAst($data1, $data2)
         $uniqueKeys,
         function ($astNodes, $key) use ($data1, $data2) {
             $astNodes[$key] = new \stdClass();
-            $astNodes[$key]->children = null;
-            $astNodes[$key]->oldValue = null;
-            $astNodes[$key]->newValue = null;
             if (property_exists($data1, $key) && !property_exists($data2, $key)) {
                 $astNodes[$key]->type = 'deleted';
                 $astNodes[$key]->oldValue = $data1->$key;
@@ -61,10 +58,14 @@ function genDiff($pathToFile1, $pathToFile2, $format = "pretty")
         throw new \Exception("Задан неизвестный формат отображения: '{$format}'!");
     }
 
-    $config1 = parse($pathToFile1);
-    $config2 = parse($pathToFile2);
+    $data1 = file_get_contents($pathToFile1);
+    $fileExtension1 = pathinfo($pathToFile1, PATHINFO_EXTENSION);
+    $parsedData1 = parse($data1, $fileExtension1);
+
+    $data2 = file_get_contents($pathToFile2);
+    $fileExtension2 = pathinfo($pathToFile2, PATHINFO_EXTENSION);
+    $parsedData2 = parse($data2, $fileExtension2);
     
-    $diffAst = buildDiffAst($config1, $config2);
- 
+    $diffAst = buildDiffAst($parsedData1, $parsedData2);
     return render($diffAst, $format);
 }

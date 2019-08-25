@@ -4,13 +4,16 @@ namespace GenDiff\Parsers;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parse($pathToFile)
+function parse($data, $type)
 {
-    $rawData = file_get_contents($pathToFile);
-    $fileExtension = pathinfo($pathToFile, PATHINFO_EXTENSION);
-    if ($fileExtension === "json") {
-        return json_decode($rawData);
-    } elseif ($fileExtension === "yml") {
-        return Yaml::parse($rawData, Yaml::PARSE_OBJECT_FOR_MAP);
-    }
+    $mapping = [
+        'json' => function ($rawData) {
+            return json_decode($rawData);
+        },
+        'yml' => function ($rawData) {
+            return Yaml::parse($rawData, Yaml::PARSE_OBJECT_FOR_MAP);
+        }
+    ];
+
+    return $mapping[$type]($data);
 }
