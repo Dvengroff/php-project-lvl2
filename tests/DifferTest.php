@@ -7,69 +7,41 @@ use PHPUnit\Framework\TestCase;
 
 class DifferTest extends TestCase
 {
+    private $types;
+    private $formatters;
+
+    public function setUp(): void
+    {
+        $this->types = ['json', 'yml'];
+        $this->formatters = ['pretty', 'plain', 'json'];
+    }
+ 
     /**
      * @dataProvider additionProvider
      */
-    public function testGenDiff($pathToFile1, $pathToFile2, $prettyDiff, $plainDiff, $jsonDiff)
+    public function testGenDiff($fileName1, $fileName2, $resFileName)
     {
-        $actual = genDiff($pathToFile1, $pathToFile2);
-        $expected = file_get_contents($prettyDiff);
-        $this->assertEquals($expected, $actual);
-
-        $actual = genDiff($pathToFile1, $pathToFile2, 'plain');
-        $expected = file_get_contents($plainDiff);
-        $this->assertEquals($expected, $actual);
-
-        $actual = genDiff($pathToFile1, $pathToFile2, 'json');
-        $expected = file_get_contents($jsonDiff);
-        $this->assertEquals($expected, $actual);
+        foreach ($this->types as $type) {
+            $dataDirName = __DIR__ . "/fixtures/{$type}";
+            $pathToFile1 = $dataDirName . DIRECTORY_SEPARATOR . "{$fileName1}.{$type}";
+            $pathToFile2 = $dataDirName . DIRECTORY_SEPARATOR . "{$fileName2}.{$type}";
+            
+            foreach ($this->formatters as $format) {
+                $actual = genDiff($pathToFile1, $pathToFile2, $format);
+                $resDirName = __DIR__ . "/fixtures/results/{$format}";
+                $pathToResFile = $resDirName . DIRECTORY_SEPARATOR . "{$resFileName}.{$format}";
+                $expected = file_get_contents($pathToResFile);
+                $this->assertEquals($expected, $actual);
+            }
+        }
     }
 
     public function additionProvider()
     {
         return [
-            "flat_json" => [
-                __DIR__ . "/fixtures/json/before1.json",
-                __DIR__ . "/fixtures/json/after1.json",
-                __DIR__ . "/fixtures/pretty/diff1",
-                __DIR__ . "/fixtures/plain/diff1",
-                __DIR__ . "/fixtures/json/diff1.json"
-            ],
-            "flat_yaml" => [
-                __DIR__ . "/fixtures/yaml/before1.yml",
-                __DIR__ . "/fixtures/yaml/after1.yml",
-                __DIR__ . "/fixtures/pretty/diff1",
-                __DIR__ . "/fixtures/plain/diff1",
-                __DIR__ . "/fixtures/json/diff1.json"
-            ],
-            "nested_json" => [
-                __DIR__ . "/fixtures/json/before2.json",
-                __DIR__ . "/fixtures/json/after2.json",
-                __DIR__ . "/fixtures/pretty/diff2",
-                __DIR__ . "/fixtures/plain/diff2",
-                __DIR__ . "/fixtures/json/diff2.json"
-            ],
-            "nested_yaml" => [
-                __DIR__ . "/fixtures/yaml/before2.yml",
-                __DIR__ . "/fixtures/yaml/after2.yml",
-                __DIR__ . "/fixtures/pretty/diff2",
-                __DIR__ . "/fixtures/plain/diff2",
-                __DIR__ . "/fixtures/json/diff2.json"
-            ],
-            "json_with_array" => [
-                __DIR__ . "/fixtures/json/before3.json",
-                __DIR__ . "/fixtures/json/after3.json",
-                __DIR__ . "/fixtures/pretty/diff3",
-                __DIR__ . "/fixtures/plain/diff3",
-                __DIR__ . "/fixtures/json/diff3.json"
-            ],
-            "yaml_with_array" => [
-                __DIR__ . "/fixtures/yaml/before3.yml",
-                __DIR__ . "/fixtures/yaml/after3.yml",
-                __DIR__ . "/fixtures/pretty/diff3",
-                __DIR__ . "/fixtures/plain/diff3",
-                __DIR__ . "/fixtures/json/diff3.json"
-            ]
+            "flat_data" => ['before1', 'after1', 'diff1'],
+            "nested_data" => ['before2', 'after2', 'diff2'],
+            "data_with_array" => ['before3', 'after3', 'diff3']
         ];
     }
 }
