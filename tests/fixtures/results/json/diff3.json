@@ -12,16 +12,22 @@
         ]
     },
     "require": {
-        "phpunit": {
-            "type": "changed",
-            "oldValue": "phpunit",
-            "newValue": "*"
-        },
-        "http-client": {
-            "foo": {
+        "type": "nested",
+        "children": {
+            "phpunit": {
                 "type": "changed",
-                "oldValue": "foo",
-                "newValue": "bar"
+                "oldValue": "phpunit",
+                "newValue": "*"
+            },
+            "http-client": {
+                "type": "nested",
+                "children": {
+                    "foo": {
+                        "type": "changed",
+                        "oldValue": "foo",
+                        "newValue": "bar"
+                    }
+                }
             }
         }
     }

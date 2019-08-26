@@ -1,4 +1,9 @@
 {
+    "host": {
+        "type": "unchanged",
+        "oldValue": "hexlet.io",
+        "newValue": "hexlet.io"
+    },
     "timeout": {
         "type": "changed",
         "oldValue": 50,
