@@ -11,33 +11,29 @@ function getValueMap($value)
             ? 'complex value' : Strings\strip(json_encode($value), '"');
 }
 
-function getRawData($ast, $property = "")
+function getRawData($nodes, $pathToKey = "")
 {
     $data = array_map(
-        function ($attr, $node) use ($property) {
+        function ($key, $node) use ($pathToKey) {
             switch ($node->type) {
                 case 'changed':
-                    $property .= $attr;
                     $oldValue = getValueMap($node->oldValue);
                     $newValue = getValueMap($node->newValue);
-                    $raw = "Property '{$property}' was changed. From '{$oldValue}' to '{$newValue}'";
+                    $raw = "Property '{$pathToKey}{$key}' was changed. From '{$oldValue}' to '{$newValue}'";
                     return $raw;
                 case 'deleted':
-                    $property .= $attr;
-                    $raw = "Property '{$property}' was removed";
+                    $raw = "Property '{$pathToKey}{$key}' was removed";
                     return $raw;
                 case 'added':
-                    $property .= $attr;
                     $value = getValueMap($node->newValue);
-                    $raw = "Property '{$property}' was added with value: '$value'";
+                    $raw = "Property '{$pathToKey}{$key}' was added with value: '$value'";
                     return $raw;
                 case 'nested':
-                    $property .= "{$attr}.";
-                    return getRawData($node->children, $property);
+                    return getRawData($node->children, "{$pathToKey}{$key}.");
             }
         },
-        array_keys($ast),
-        $ast
+        array_keys($nodes),
+        $nodes
     );
     return Collection\compact($data);
 }
