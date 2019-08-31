@@ -2,13 +2,13 @@
     "files": {
         "type": "changed",
         "oldValue": [
-            "src\/Moment.php",
-            "src\/Countable.php",
-            "src\/Factorial.php"
+            "src/Moment.php",
+            "src/Countable.php",
+            "src/Factorial.php"
         ],
         "newValue": [
-            "src\/Countable.php",
-            "src\/Moment.php"
+            "src/Countable.php",
+            "src/Moment.php"
         ]
     },
     "require": {

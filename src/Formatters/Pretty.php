@@ -5,55 +5,76 @@ namespace GenDiff\Formatters\Pretty;
 use Funct\Collection;
 use Funct\Strings;
 
-function getRawData($ast)
+const DEFAULT_INDENT = 4;
+
+function getValueMap($value, $depth)
 {
-    return array_reduce(
-        array_keys($ast),
-        function ($data, $attr) use ($ast) {
-            switch ($ast[$attr]->type) {
+    if (is_object($value)) {
+        $valueMapArr = array_map(
+            function ($key, $val) use ($depth) {
+                $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 2));
+                return "{$indent}{$key}: {$val}";
+            },
+            array_keys((array) $value),
+            (array) $value
+        );
+        $valueMapString = implode("\n", $valueMapArr);
+        $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
+        return "{\n{$valueMapString}\n{$indent}}";
+    } elseif (is_array($value)) {
+        $valueMapArr = array_map(
+            function ($item) use ($depth) {
+                $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 2));
+                return "{$indent}{$item}";
+            },
+            $value
+        );
+        $valueMapString = implode("\n", $valueMapArr);
+        $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
+        return "[\n{$valueMapString}\n{$indent}]";
+    } else {
+        return Strings\strip(json_encode($value), '"');
+    }
+}
+
+function getDataMap($nodes, $depth = 0)
+{
+    $rawData = array_map(
+        function ($key, $node) use ($depth) {
+            $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
+            switch ($node->type) {
                 case 'unchanged':
-                    $key = "{$attr}";
-                    $data[$key] = $ast[$attr]->newValue;
-                    break;
+                    $value = getValueMap($node->oldValue, $depth);
+                    return "{$indent}{$key}: {$value}";
                 case 'changed':
-                    $oldKey = "- {$attr}";
-                    $data[$oldKey] = $ast[$attr]->oldValue;
-                    $newKey = "+ {$attr}";
-                    $data[$newKey] = $ast[$attr]->newValue;
-                    break;
+                    $oldValue = getValueMap($node->oldValue, $depth);
+                    $oldRaw = "{$indent}- {$key}: {$oldValue}";
+                    $newValue = getValueMap($node->newValue, $depth);
+                    $newRaw = "{$indent}+ {$key}: {$newValue}";
+                    return [Strings\chompLeft($oldRaw, "  "), Strings\chompLeft($newRaw, "  ")];
                 case 'deleted':
-                    $key = "- {$attr}";
-                    $data[$key] = $ast[$attr]->oldValue;
-                    break;
+                    $value = getValueMap($node->oldValue, $depth);
+                    $raw = "{$indent}- {$key}: {$value}";
+                    return Strings\chompLeft($raw, "  ");
                 case 'added':
-                    $key = "+ {$attr}";
-                    $data[$key] = $ast[$attr]->newValue;
-                    break;
+                    $value = getValueMap($node->newValue, $depth);
+                    $raw = "{$indent}+ {$key}: {$value}";
+                    return Strings\chompLeft($raw, "  ");
                 case 'nested':
-                    $key = "{$attr}";
-                    $data[$key] = getRawData($ast[$attr]->children);
-                    break;
+                    $value = getDataMap($node->children, $depth + 1);
+                    return "{$indent}{$key}: {$value}";
             }
-            return $data;
         },
-        []
+        array_keys($nodes),
+        $nodes
     );
+
+    $rawDataString = implode("\n", Collection\flattenAll($rawData));
+    $indent = str_repeat(" ", DEFAULT_INDENT * $depth);
+    return "{\n{$rawDataString}\n{$indent}}";
 }
 
 function render($diffAst)
 {
-    $rawData = getRawData($diffAst);
-    $rawDataString = json_encode($rawData, JSON_PRETTY_PRINT);
-    $rawDataArr = explode("\n", $rawDataString);
-    $formattedDataArr = array_map(
-        function ($rawString) {
-            $formattedString = Strings\strip($rawString, '"', ",");
-            $firstChar = trim($formattedString)[0];
-            return (($firstChar === "+") || ($firstChar === "-"))
-                    ? Strings\chompLeft($formattedString, "  ") : $formattedString;
-        },
-        $rawDataArr
-    );
-
-    return implode("\n", $formattedDataArr) . PHP_EOL;
+    return getDataMap($diffAst) . PHP_EOL;
 }

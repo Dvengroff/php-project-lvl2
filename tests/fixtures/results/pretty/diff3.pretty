@@ -1,12 +1,12 @@
 {
   - files: [
-        src\/Moment.php
-        src\/Countable.php
-        src\/Factorial.php
+        src/Moment.php
+        src/Countable.php
+        src/Factorial.php
     ]
   + files: [
-        src\/Countable.php
-        src\/Moment.php
+        src/Countable.php
+        src/Moment.php
     ]
     require: {
       - phpunit: phpunit
