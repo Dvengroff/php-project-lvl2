@@ -7,33 +7,44 @@ use Funct\Strings;
 
 const DEFAULT_INDENT = 4;
 
+function getObjectMap($data, $depth)
+{
+    $dataMapArr = array_map(
+        function ($key, $value) use ($depth) {
+            $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 2));
+            return "{$indent}{$key}: {$value}";
+        },
+        array_keys((array) $data),
+        (array) $data
+    );
+    $dataMapString = implode("\n", $dataMapArr);
+    $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
+    return "{\n{$dataMapString}\n{$indent}}";
+}
+
+function getArrayMap($data, $depth)
+{
+    $dataMapArr = array_map(
+        function ($value) use ($depth) {
+            $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 2));
+            return "{$indent}{$value}";
+        },
+        $data
+    );
+    $dataMapString = implode("\n", $dataMapArr);
+    $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
+    return "[\n{$dataMapString}\n{$indent}]";
+}
+
 function getValueMap($value, $depth)
 {
-    if (is_object($value)) {
-        $valueMapArr = array_map(
-            function ($key, $val) use ($depth) {
-                $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 2));
-                return "{$indent}{$key}: {$val}";
-            },
-            array_keys((array) $value),
-            (array) $value
-        );
-        $valueMapString = implode("\n", $valueMapArr);
-        $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
-        return "{\n{$valueMapString}\n{$indent}}";
-    } elseif (is_array($value)) {
-        $valueMapArr = array_map(
-            function ($item) use ($depth) {
-                $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 2));
-                return "{$indent}{$item}";
-            },
-            $value
-        );
-        $valueMapString = implode("\n", $valueMapArr);
-        $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
-        return "[\n{$valueMapString}\n{$indent}]";
-    } else {
-        return Strings\strip(json_encode($value), '"');
+    switch (gettype($value)) {
+        case 'object':
+            return getObjectMap($value, $depth);
+        case 'array':
+            return getArrayMap($value, $depth);
+        default:
+            return Strings\strip(json_encode($value), '"');
     }
 }
 

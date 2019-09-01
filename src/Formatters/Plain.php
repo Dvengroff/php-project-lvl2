@@ -11,7 +11,7 @@ function getValueMap($value)
             ? 'complex value' : Strings\strip(json_encode($value), '"');
 }
 
-function getRawData($nodes, $pathToKey = "")
+function getDataMap($nodes, $pathToKey = "")
 {
     $data = array_map(
         function ($key, $node) use ($pathToKey) {
@@ -29,7 +29,7 @@ function getRawData($nodes, $pathToKey = "")
                     $raw = "Property '{$pathToKey}{$key}' was added with value: '$value'";
                     return $raw;
                 case 'nested':
-                    return getRawData($node->children, "{$pathToKey}{$key}.");
+                    return getDataMap($node->children, "{$pathToKey}{$key}.");
             }
         },
         array_keys($nodes),
@@ -40,6 +40,6 @@ function getRawData($nodes, $pathToKey = "")
 
 function render($diffAst)
 {
-    $rawData = getRawData($diffAst);
-    return implode("\n", Collection\flattenAll($rawData)) . PHP_EOL;
+    $dataMap = getDataMap($diffAst);
+    return implode("\n", Collection\flattenAll($dataMap)) . PHP_EOL;
 }
