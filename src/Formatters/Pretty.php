@@ -48,32 +48,45 @@ function getValueMap($value, $depth)
     }
 }
 
+function getPrettyRaw($type, $key, $value, $depth)
+{
+    $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
+    $mapping = [
+        'deleted' => function ($key, $value, $depth) use ($indent) {
+            $oldValue = getValueMap($value, $depth);
+            $raw = "{$indent}- {$key}: {$oldValue}";
+            return Strings\chompLeft($raw, "  ");
+        },
+        'added' => function ($key, $value, $depth) use ($indent) {
+            $newValue = getValueMap($value, $depth);
+            $raw = "{$indent}+ {$key}: {$newValue}";
+            return Strings\chompLeft($raw, "  ");
+        },
+        'unchanged' => function ($key, $value, $depth) use ($indent) {
+            $oldValue = getValueMap($value, $depth);
+            return "{$indent}{$key}: {$oldValue}";
+        },
+        'changed' => function ($key, $value, $depth) use ($indent) {
+            $oldValue = getValueMap($value['old'], $depth);
+            $oldRaw = "{$indent}- {$key}: {$oldValue}";
+            $newValue = getValueMap($value['new'], $depth);
+            $newRaw = "{$indent}+ {$key}: {$newValue}";
+            return [Strings\chompLeft($oldRaw, "  "), Strings\chompLeft($newRaw, "  ")];
+        },
+    ];
+    return $mapping[$type]($key, $value, $depth);
+}
+
 function getDataMap($nodes, $depth = 0)
 {
     $rawData = array_map(
         function ($key, $node) use ($depth) {
-            $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
-            switch ($node->type) {
-                case 'unchanged':
-                    $value = getValueMap($node->oldValue, $depth);
-                    return "{$indent}{$key}: {$value}";
-                case 'changed':
-                    $oldValue = getValueMap($node->oldValue, $depth);
-                    $oldRaw = "{$indent}- {$key}: {$oldValue}";
-                    $newValue = getValueMap($node->newValue, $depth);
-                    $newRaw = "{$indent}+ {$key}: {$newValue}";
-                    return [Strings\chompLeft($oldRaw, "  "), Strings\chompLeft($newRaw, "  ")];
-                case 'deleted':
-                    $value = getValueMap($node->oldValue, $depth);
-                    $raw = "{$indent}- {$key}: {$value}";
-                    return Strings\chompLeft($raw, "  ");
-                case 'added':
-                    $value = getValueMap($node->newValue, $depth);
-                    $raw = "{$indent}+ {$key}: {$value}";
-                    return Strings\chompLeft($raw, "  ");
-                case 'nested':
-                    $value = getDataMap($node->children, $depth + 1);
-                    return "{$indent}{$key}: {$value}";
+            if ($node->type === 'nested') {
+                $indent = str_repeat(" ", DEFAULT_INDENT * ($depth + 1));
+                $value = getDataMap($node->children, $depth + 1);
+                return "{$indent}{$key}: {$value}";
+            } else {
+                return getPrettyRaw($node->type, $key, $node->value, $depth);
             }
         },
         array_keys($nodes),

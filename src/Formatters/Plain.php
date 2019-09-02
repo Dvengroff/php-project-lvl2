@@ -11,25 +11,36 @@ function getValueMap($value)
             ? 'complex value' : Strings\strip(json_encode($value), '"');
 }
 
+function getPlainRaw($type, $property, $value)
+{
+    $mapping = [
+        'deleted' => function ($property, $value) {
+            return "Property '{$property}' was removed";
+        },
+        'added' => function ($property, $value) {
+            $newValue = getValueMap($value);
+            return "Property '{$property}' was added with value: '$newValue'";
+        },
+        'unchanged' => function ($property, $value) {
+            return "";
+        },
+        'changed' => function ($property, $value) {
+            $oldValue = getValueMap($value['old']);
+            $newValue = getValueMap($value['new']);
+            return "Property '{$property}' was changed. From '{$oldValue}' to '{$newValue}'";
+        },
+    ];
+    return $mapping[$type]($property, $value);
+}
+
 function getDataMap($nodes, $pathToKey = "")
 {
     $data = array_map(
         function ($key, $node) use ($pathToKey) {
-            switch ($node->type) {
-                case 'changed':
-                    $oldValue = getValueMap($node->oldValue);
-                    $newValue = getValueMap($node->newValue);
-                    $raw = "Property '{$pathToKey}{$key}' was changed. From '{$oldValue}' to '{$newValue}'";
-                    return $raw;
-                case 'deleted':
-                    $raw = "Property '{$pathToKey}{$key}' was removed";
-                    return $raw;
-                case 'added':
-                    $value = getValueMap($node->newValue);
-                    $raw = "Property '{$pathToKey}{$key}' was added with value: '$value'";
-                    return $raw;
-                case 'nested':
-                    return getDataMap($node->children, "{$pathToKey}{$key}.");
+            if ($node->type === 'nested') {
+                return getDataMap($node->children, "{$pathToKey}{$key}.");
+            } else {
+                return getPlainRaw($node->type, "{$pathToKey}{$key}", $node->value);
             }
         },
         array_keys($nodes),

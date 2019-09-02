@@ -1,31 +1,37 @@
 {
     "files": {
         "type": "changed",
-        "oldValue": [
-            "src/Moment.php",
-            "src/Countable.php",
-            "src/Factorial.php"
-        ],
-        "newValue": [
-            "src/Countable.php",
-            "src/Moment.php"
-        ]
+        "value": {
+            "old": [
+                "src/Moment.php",
+                "src/Countable.php",
+                "src/Factorial.php"
+            ],
+            "new": [
+                "src/Countable.php",
+                "src/Moment.php"
+            ]
+        }
     },
     "require": {
         "type": "nested",
         "children": {
             "phpunit": {
                 "type": "changed",
-                "oldValue": "phpunit",
-                "newValue": "*"
+                "value": {
+                    "old": "phpunit",
+                    "new": "*"
+                }
             },
             "http-client": {
                 "type": "nested",
                 "children": {
                     "foo": {
                         "type": "changed",
-                        "oldValue": "foo",
-                        "newValue": "bar"
+                        "value": {
+                            "old": "foo",
+                            "new": "bar"
+                        }
                     }
                 }
             }

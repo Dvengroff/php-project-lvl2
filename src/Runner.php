@@ -12,7 +12,7 @@ function run($doc)
         $diff = genDiff($args['<firstFile>'], $args['<secondFile>'], $args['--format']);
     } catch (\Exception $e) {
         echo $e->getMessage() . PHP_EOL;
-        return;
+        exit(1);
     }
     
     print_r($diff);

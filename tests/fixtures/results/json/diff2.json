@@ -4,31 +4,29 @@
         "children": {
             "setting1": {
                 "type": "unchanged",
-                "oldValue": "Value 1",
-                "newValue": "Value 1"
+                "value": "Value 1"
             },
             "setting2": {
                 "type": "deleted",
-                "oldValue": "200"
+                "value": "200"
             },
             "setting3": {
                 "type": "unchanged",
-                "oldValue": true,
-                "newValue": true
+                "value": true
             },
             "setting6": {
                 "type": "deleted",
-                "oldValue": {
+                "value": {
                     "key": "value"
                 }
             },
             "setting4": {
                 "type": "added",
-                "newValue": "blah blah"
+                "value": "blah blah"
             },
             "setting5": {
                 "type": "added",
-                "newValue": {
+                "value": {
                     "key5": "value5"
                 }
             }
@@ -39,25 +37,26 @@
         "children": {
             "baz": {
                 "type": "changed",
-                "oldValue": "bas",
-                "newValue": "bars"
+                "value": {
+                    "old": "bas",
+                    "new": "bars"
+                }
             },
             "foo": {
                 "type": "unchanged",
-                "oldValue": "bar",
-                "newValue": "bar"
+                "value": "bar"
             }
         }
     },
     "group2": {
         "type": "deleted",
-        "oldValue": {
+        "value": {
             "abc": "12345"
         }
     },
     "group3": {
         "type": "added",
-        "newValue": {
+        "value": {
             "fee": "100500"
         }
     }

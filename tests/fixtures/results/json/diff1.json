@@ -1,20 +1,21 @@
 {
     "host": {
         "type": "unchanged",
-        "oldValue": "hexlet.io",
-        "newValue": "hexlet.io"
+        "value": "hexlet.io"
     },
     "timeout": {
         "type": "changed",
-        "oldValue": 50,
-        "newValue": 20
+        "value": {
+            "old": 50,
+            "new": 20
+        }
     },
     "proxy": {
         "type": "deleted",
-        "oldValue": "123.234.53.22"
+        "value": "123.234.53.22"
     },
     "verbose": {
         "type": "added",
-        "newValue": true
+        "value": true
     }
 }
